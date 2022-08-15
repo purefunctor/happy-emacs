@@ -1,0 +1,11 @@
+#+TITLE: ハッピ Emacs
+#+AUTHOR: purefunctor
+
+ハッピ (read: Happy) Emacs is a minimal Emacs distribution.
+
+** Installation
+
+Installation is as easy as cloning and running Emacs, like so:
+#+begin_src sh
+  $ git clone https://github.com/purefunctor/happy-emacs.git ~/.emacs.d/
+#+end_src
