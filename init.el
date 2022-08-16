@@ -39,6 +39,7 @@
 (require 'happy-setup)
 (require 'happy-edit)
 (require 'happy-ui)
+(require 'happy-magit)
 (require 'happy-hydra)
 
 ;;; init.el ends here
