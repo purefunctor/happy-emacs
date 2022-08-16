@@ -15,14 +15,16 @@
   "Split the current window vertically."
   (interactive)
   (let ((window (get-buffer-window)))
-    (aw-split-window-vert window)
+    (select-window window)
+    (split-window-vertically)
     (windmove-down window)))
 
 (defun happy/split-window-horizontal ()
   "Split the current window horizontally."
   (interactive)
   (let ((window (get-buffer-window)))
-    (aw-split-window-horz window)
+    (select-window window)
+    (split-window-horizontally)
     (windmove-right window)))
 
 (defun happy/hydra-no-switch ()
@@ -41,12 +43,12 @@
 (defun happy/window-shrink ()
   "Shrink the current window."
   (interactive)
-  (window-resize (get-buffer-window) (- 5) happy/window-horizontal-v))
+  (window-resize (get-buffer-window) (- 2) happy/window-horizontal-v))
 
 (defun happy/window-grow ()
   "Grow the current window."
   (interactive)
-  (window-resize (get-buffer-window) (+ 5) happy/window-horizontal-v))
+  (window-resize (get-buffer-window) (+ 2) happy/window-horizontal-v))
 
 (defun happy/window-balance ()
   "Balance the windows."
@@ -105,7 +107,7 @@
   ("," happy/window-shrink)
   ("." happy/window-grow)
   ("/" happy/window-horizontal)
-  ("=" happy/window-balance))
+  ("=" happy/window-balance :exit t))
 
 (define-key global-map (kbd "C-c t") 'tab-hydra/body)
 (define-key global-map (kbd "C-c w") 'window-hydra/body)
