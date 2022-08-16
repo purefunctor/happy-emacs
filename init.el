@@ -6,19 +6,19 @@
 ;;
 ;;; Code:
 
-(defvar happy-emacs-modules
+(defconst happy-modules
   (expand-file-name "modules" user-emacs-directory)
   "The folder where ハッピ Emacs modules are stored.")
 
-(defvar happy-emacs-custom
+(defconst happy-custom
   (expand-file-name "custom.el" user-emacs-directory)
   "The file where customizations are stored.")
 
-(defvar happy-emacs-saves
+(defconst happy-saves
   (expand-file-name "saves" user-emacs-directory)
   "The folder where automatic save files are stored.")
 
-(defcustom happy-emacs-org-root "~/org"
+(defcustom happy-org-root "~/org"
   "The folder to be used for `org-mode' related files.")
 
 ;; straight.el/setup.el
@@ -37,7 +37,7 @@
 (straight-use-package 'setup)
 
 ;; load modules
-(push happy-emacs-modules load-path)
+(push happy-modules load-path)
 (require 'happy-defaults)
 (require 'happy-setup)
 (require 'happy-edit)

@@ -18,8 +18,8 @@
 
 (setq
   ;; temporary files
-  auto-save-file-name-transforms `((".*" ,happy-emacs-saves))
-  backup-directory-alist `((".*" . ,happy-emacs-saves))
+  auto-save-file-name-transforms `((".*" ,happy-saves))
+  backup-directory-alist `((".*" . ,happy-saves))
   ;; for resizing on MacOS
   frame-resize-pixelwise t
   ;; overall performance
@@ -34,7 +34,7 @@
   require-final-newline t)
 
 ;; load customizations only if they exist
-(setq custom-file happy-emacs-custom)
+(setq custom-file happy-custom)
 (if (file-exists-p custom-file) (load custom-file))
 
 ;; fonts
