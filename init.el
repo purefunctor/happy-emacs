@@ -18,6 +18,9 @@
   (expand-file-name "saves" user-emacs-directory)
   "The folder where automatic save files are stored.")
 
+(defcustom happy-emacs-org-root "~/org"
+  "The folder to be used for `org-mode' related files.")
+
 ;; straight.el/setup.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -40,6 +43,7 @@
 (require 'happy-edit)
 (require 'happy-ui)
 (require 'happy-magit)
+(require 'happy-org)
 (require 'happy-hydra)
 
 ;;; init.el ends here
