@@ -30,6 +30,9 @@
   (interactive)
   (message "Already within '%s'." hydra-curr-body-fn))
 
+(setup (:recipe 'hydra)
+  (:require hydra))
+
 (defhydra tab-hydra (:hint nil)
   "
 

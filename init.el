@@ -33,9 +33,6 @@
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'setup)
 
-;;; TODO
-(straight-use-package 'hydra)
-
 ;; load modules
 (push happy-emacs-modules load-path)
 (require 'happy-defaults)
