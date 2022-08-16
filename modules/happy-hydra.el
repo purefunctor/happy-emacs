@@ -30,25 +30,23 @@
   (interactive)
   (message "Already within '%s'." hydra-curr-body-fn))
 
-(defun happy/window-shrink-horizontal ()
-  "Shrink the window horizontally."
-  (interactive)
-  (window-resize (get-buffer-window) (- 5) t))
+(defvar happy/window-horizontal-v t
+  "Whether or not to resize horizontally.")
 
-(defun happy/window-grow-horizontal ()
-  "Grow the window horizontally."
+(defun happy/window-horizontal ()
+  "Toggle the mode of the window resizing functions."
   (interactive)
-  (window-resize (get-buffer-window) (+ 5) t))
+  (setq happy/window-horizontal-v (not happy/window-horizontal-v)))
 
-(defun happy/window-shrink-vertical ()
-  "Shrink the window vertically."
+(defun happy/window-shrink ()
+  "Shrink the current window."
   (interactive)
-  (window-resize (get-buffer-window) (- 5)))
+  (window-resize (get-buffer-window) (- 5) happy/window-horizontal-v))
 
-(defun happy/window-grow-vertical ()
-  "Grow the window vertically."
+(defun happy/window-grow ()
+  "Grow the current window."
   (interactive)
-  (window-resize (get-buffer-window) (+ 5)))
+  (window-resize (get-buffer-window) (+ 5) happy/window-horizontal-v))
 
 (defun happy/window-balance ()
   "Balance the windows."
@@ -87,8 +85,8 @@
   _j_ : windmove-down  _k_ : windmove-up     _v_ : happy/split-window-vertical
   _h_ : windmove-left  _l_ : windmove-right  _b_ : happy/split-window-horizontal
 
-  _,_ : happy/window-shrink-horizontal  _-_ : happy/window-shrink-vertical  _=_ : happy/window-balance
-  _._ : happy/window-grow-horizontal    _+_ : happy/window-grow-vertical
+  _,_ : happy/window-shrink  _=_ : happy/window-balance
+  _._ : happy/window-grow    _/_ : happy/window-horizontal [ %`happy/window-horizontal-v ]
 
   _x_ : delete-window
 
@@ -104,10 +102,9 @@
   ("q" keyboard-quit :exit t)
   ("t" tab-hydra/body :exit t)
   ("w" happy/hydra-no-switch)
-  ("," happy/window-shrink-horizontal)
-  ("." happy/window-grow-horizontal)
-  ("-" happy/window-shrink-vertical)
-  ("+" happy/window-grow-vertical)
+  ("," happy/window-shrink)
+  ("." happy/window-grow)
+  ("/" happy/window-horizontal)
   ("=" happy/window-balance))
 
 (define-key global-map (kbd "C-c t") 'tab-hydra/body)
