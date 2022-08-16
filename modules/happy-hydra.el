@@ -30,6 +30,31 @@
   (interactive)
   (message "Already within '%s'." hydra-curr-body-fn))
 
+(defun happy/window-shrink-horizontal ()
+  "Shrink the window horizontally."
+  (interactive)
+  (window-resize (get-buffer-window) (- 5) t))
+
+(defun happy/window-grow-horizontal ()
+  "Grow the window horizontally."
+  (interactive)
+  (window-resize (get-buffer-window) (+ 5) t))
+
+(defun happy/window-shrink-vertical ()
+  "Shrink the window vertically."
+  (interactive)
+  (window-resize (get-buffer-window) (- 5)))
+
+(defun happy/window-grow-vertical ()
+  "Grow the window vertically."
+  (interactive)
+  (window-resize (get-buffer-window) (+ 5)))
+
+(defun happy/window-balance ()
+  "Balance the windows."
+  (interactive)
+  (balance-windows))
+
 (setup (:recipe 'hydra)
   (:require hydra))
 
@@ -62,6 +87,9 @@
   _j_ : windmove-down  _k_ : windmove-up     _v_ : happy/split-window-vertical
   _h_ : windmove-left  _l_ : windmove-right  _b_ : happy/split-window-horizontal
 
+  _,_ : happy/window-shrink-horizontal  _-_ : happy/window-shrink-vertical  _=_ : happy/window-balance
+  _._ : happy/window-grow-horizontal    _+_ : happy/window-grow-vertical
+
   _x_ : delete-window
 
   _q_ : keyboard-quit  _t_ : tab-hydra
@@ -75,7 +103,12 @@
   ("x" delete-window)
   ("q" keyboard-quit :exit t)
   ("t" tab-hydra/body :exit t)
-  ("w" happy/hydra-no-switch))
+  ("w" happy/hydra-no-switch)
+  ("," happy/window-shrink-horizontal)
+  ("." happy/window-grow-horizontal)
+  ("-" happy/window-shrink-vertical)
+  ("+" happy/window-grow-vertical)
+  ("=" happy/window-balance))
 
 (define-key global-map (kbd "C-c t") 'tab-hydra/body)
 (define-key global-map (kbd "C-c w") 'window-hydra/body)
