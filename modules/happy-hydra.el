@@ -35,8 +35,8 @@
 
   tab-hydra
 
-  _j_ : awesome-tab-forward        _k_ : awesome-tab-backward
-  _l_ : awesome-tab-forward-group  _h_ : awesome-tab-backward-group
+  _j_ : awesome-tab-forward         _k_ : awesome-tab-backward
+  _h_ : awesome-tab-backward-group  _l_ : awesome-tab-forward-group
 
   _x_ : happy/kill-current-buffer
 
@@ -56,8 +56,8 @@
 
   window-hydra
 
-  _j_ : windmove-down  _l_ : windmove-right  _v_ : happy/split-window-vertical
-  _k_ : windmove-up    _h_ : windmove-left   _b_ : happy/split-window-horizontal
+  _j_ : windmove-down  _k_ : windmove-up     _v_ : happy/split-window-vertical
+  _h_ : windmove-left  _l_ : windmove-right  _b_ : happy/split-window-horizontal
 
   _x_ : delete-window
 
