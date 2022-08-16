@@ -25,6 +25,11 @@
     (aw-split-window-horz window)
     (windmove-right window)))
 
+(defun happy/hydra-no-switch ()
+  "Inform the user that the hydra wasn't switched."
+  (interactive)
+  (message "Already within '%s'." hydra-curr-body-fn))
+
 (defhydra tab-hydra (:hint nil)
   "
 
@@ -43,7 +48,8 @@
   ("l" awesome-tab-forward-group)
   ("x" happy/kill-current-buffer)
   ("q" keyboard-quit :exit t)
-  ("w" window-hydra/body :exit t))
+  ("w" window-hydra/body :exit t)
+  ("t" happy/hydra-no-switch))
 
 (defhydra window-hydra (:hint nil)
   "
@@ -65,7 +71,8 @@
   ("b" happy/split-window-horizontal)
   ("x" delete-window)
   ("q" keyboard-quit :exit t)
-  ("t" tab-hydra/body :exit t))
+  ("t" tab-hydra/body :exit t)
+  ("w" happy/hydra-no-switch))
 
 (define-key global-map (kbd "C-c t") 'tab-hydra/body)
 (define-key global-map (kbd "C-c w") 'window-hydra/body)
