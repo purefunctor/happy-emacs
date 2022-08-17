@@ -42,6 +42,7 @@
 (require 'happy-setup)
 (require 'happy-edit)
 (require 'happy-ui)
+(require 'happy-minibuffer)
 (require 'happy-magit)
 (require 'happy-org)
 (require 'happy-hydra)
