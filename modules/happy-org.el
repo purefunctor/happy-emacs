@@ -22,8 +22,30 @@
 (setup (:recipe 'org-roam)
   (:require org-roam)
   (:option org-roam-directory happy-org-roam-directory
-           org-roam-completion-everywhere t)
+           org-roam-completion-everywhere t
+           org-roam-node-display-template #'happy/org-roam-node-display-template)
   (org-roam-db-autosync-mode))
+
+(defun happy/org-roam-longest-title-length ()
+  "Find the length of the node with the longest title."
+  (+ 1 (seq-max (seq-map (lambda (x) (string-width (car x)))
+                         (org-roam-db-query [:select title :from nodes])))))
+
+(cl-defmethod org-roam-node-parent ((node org-roam-node))
+  "Get the title of a NODE's parent NODE."
+  (let ((parent-title
+         (org-roam-db-query
+          [:select title :from nodes :where (= file $s1) :and (= level 0)] (org-roam-node-file node))))
+    (car (car parent-title))))
+
+(defun happy/org-roam-node-display-template ()
+  "Generate the `org-roam-node-display-template'."
+  (let ((longest-title (happy/org-roam-longest-title-length)))
+    (concat (propertize (format "${parent:%i}" longest-title) 'face 'org-cite)
+            "| "
+            (format "${title:%i}" longest-title)
+            "| "
+            (propertize "${tags:20}" 'face 'org-tag))))
 
 (provide 'happy-org)
 
