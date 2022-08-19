@@ -6,7 +6,7 @@
 ;;
 ;;; Code:
 
-(setup (:recipe 'vertico)
+(setup (:recipe '(vertico :files ("*" "extensions/*" (:exclude ".git"))))
   (:require vertico)
   (vertico-mode))
 
