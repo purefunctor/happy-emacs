@@ -26,6 +26,13 @@
            org-roam-node-display-template #'happy/org-roam-node-display-template)
   (org-roam-db-autosync-mode))
 
+(setup (:recipe 'visual-fill-column)
+  (:require visual-fill-column)
+  (:option visual-fill-column-center-text t
+           visual-fill-column-width 120)
+  (:with-mode visual-fill-column-mode
+    (:hook-into org-mode)))
+
 (defun happy/org-roam-longest-title-length ()
   "Find the length of the node with the longest title."
   (+ 1 (seq-max (seq-map (lambda (x) (string-width (car x)))
