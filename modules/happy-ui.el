@@ -17,6 +17,9 @@
 
 (setup (:recipe 'dashboard)
   (:require dashboard)
+  (:option dashboard-banner-logo-title "ハッピ Emacs"
+           dashboard-center-content t
+           dashboard-startup-banner (expand-file-name "logo.png" user-emacs-directory))
   (dashboard-setup-startup-hook))
 
 (setup (:recipe 'diredfl)
