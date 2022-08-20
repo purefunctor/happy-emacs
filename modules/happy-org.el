@@ -68,12 +68,14 @@
   (let ((nodes (org-roam-db-query [:select file :from [nodes, tags] :where (= node_id id) :and (= tag "blog-post")])))
     (dolist (node nodes)
       (let* ((file (car node))
+             (visiting (null (get-file-buffer file)))
              (buffer (find-file-noselect file)))
         (message "Exporting %s" file)
         (with-current-buffer buffer
           (let ((inhibit-message t))
             (org-hugo-export-to-md)))
-        (kill-buffer buffer))))
+        (when visiting
+          (kill-buffer buffer)))))
   (message "Finished export..."))
 
 (provide 'happy-org)
