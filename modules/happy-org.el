@@ -12,6 +12,9 @@
 (defconst happy-org-roam-directory (expand-file-name "roam" happy-org-root)
   "The folder used for `org-roam'.")
 
+(defconst happy-org-hugo-directory (expand-file-name "site" happy-org-root)
+  "The folder used for `ox-hugo'.")
+
 (setup (:recipe 'org)
   (:require org)
   (:option org-directory happy-org-directory
@@ -53,6 +56,25 @@
             (format "${title:%i}" longest-title)
             "| "
             (propertize "${tags:20}" 'face 'org-tag))))
+
+(setup (:recipe 'ox-hugo)
+  (:require ox-hugo)
+  (:option org-hugo-base-dir happy-org-hugo-directory))
+
+(defun happy/ox-hugo-publish-posts ()
+  "Publish `org-roam' nodes marked with `blog-post'."
+  (interactive)
+  (message "Starting export...")
+  (let ((nodes (org-roam-db-query [:select file :from [nodes, tags] :where (= node_id id) :and (= tag "blog-post")])))
+    (dolist (node nodes)
+      (let* ((file (car node))
+             (buffer (find-file-noselect file)))
+        (message "Exporting %s" file)
+        (with-current-buffer buffer
+          (let ((inhibit-message t))
+            (org-hugo-export-to-md)))
+        (kill-buffer buffer))))
+  (message "Finished export..."))
 
 (provide 'happy-org)
 
