@@ -39,8 +39,7 @@
 
 ;; fonts
 (dolist (face '(default fixed-pitch variable-pitch))
-  (custom-set-faces
-   `(,face ((t (:family "FantasqueSansMono Nerd Font" :height 140))))))
+  (set-face-attribute face nil :family "FantasqueSansMono Nerd Font" :height 140))
 
 ;; modes
 (column-number-mode)
