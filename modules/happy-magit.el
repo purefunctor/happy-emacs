@@ -11,7 +11,6 @@
   (setq-local fill-column 72))
 
 (setup (:recipe 'magit)
-  (:require magit)
   (:option git-commit-summary-max-length 50)
   (:with-mode git-commit-mode
     (:hook happy/git-commit-fill-column)))
