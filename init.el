@@ -45,6 +45,8 @@
 (require 'happy-minibuffer)
 (require 'happy-magit)
 (require 'happy-org)
+(require 'happy-lsp)
+(require 'happy-rust)
 (require 'happy-hydra)
 
 ;;; init.el ends here
