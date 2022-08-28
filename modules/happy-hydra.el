@@ -40,37 +40,6 @@
   ("t" org-roam-tag-add :exit t)
   ("q" keyboard-quit :exit t))
 
-(defun happy/kill-current-buffer ()
-  "Kill the current buffer."
-  (interactive)
-  (kill-buffer (current-buffer)))
-
-(defun happy/hydra-no-switch ()
-  "Inform the user that the hydra wasn't switched."
-  (interactive)
-  (message "Already within '%s'." hydra-curr-body-fn))
-
-(defhydra tab-hydra (:hint nil)
-  "
-
-  tab-hydra
-
-  _j_ : awesome-tab-forward         _k_ : awesome-tab-backward
-  _h_ : awesome-tab-backward-group  _l_ : awesome-tab-forward-group
-
-  _x_ : happy/kill-current-buffer
-
-  _q_ : keyboard-quit  _w_ : window-hydra
-  "
-  ("k" awesome-tab-backward)
-  ("h" awesome-tab-backward-group)
-  ("j" awesome-tab-forward)
-  ("l" awesome-tab-forward-group)
-  ("x" happy/kill-current-buffer)
-  ("q" keyboard-quit :exit t)
-  ("w" window-hydra/body :exit t)
-  ("t" happy/hydra-no-switch))
-
 (defvar happy/window-horizontal t
   "Whether or not to resize horizontally.")
 
@@ -123,7 +92,7 @@
 
   _x_ : delete-window
 
-  _q_ : keyboard-quit  _t_ : tab-hydra
+  _q_ : keyboard-quit
   "
   ("j" windmove-down)
   ("k" windmove-up)
@@ -133,7 +102,6 @@
   ("b" happy/split-window-horizontal)
   ("x" delete-window)
   ("q" keyboard-quit :exit t)
-  ("t" tab-hydra/body :exit t)
   ("w" happy/hydra-no-switch)
   ("," happy/window-shrink)
   ("." happy/window-grow)
@@ -142,7 +110,6 @@
 
 (define-key org-mode-map (kbd "C-c o") 'org-hydra/body)
 (define-key global-map (kbd "C-c n") 'roam-hydra/body)
-(define-key global-map (kbd "C-c t") 'tab-hydra/body)
 (define-key global-map (kbd "C-c w") 'window-hydra/body)
 
 (provide 'happy-hydra)

@@ -10,21 +10,6 @@
   (:when (display-graphic-p)
          (:require all-the-icons)))
 
-(defun happy/awesome-tab-buffer-groups ()
-  (list
-   (cond
-    ((string-equal "*dashboard*" (buffer-name)) "Dashboard")
-    ((string-equal "*" (substring (buffer-name) 0 1)) "Internal")
-    ((derived-mode-p 'prog-mode) "ProgMode")
-    ((derived-mode-p 'org-mode) "OrgMode")
-    (t (awesome-tab-get-group-name (current-buffer))))))
-
-(setup (:recipe 'awesome-tab)
-  (:when (display-graphic-p)
-         (:require awesome-tab)
-         (:option awesome-tab-buffer-groups-function #'happy/awesome-tab-buffer-groups)
-         (awesome-tab-mode)))
-
 (setup (:recipe 'dashboard)
   (:require dashboard)
   (:option dashboard-banner-logo-title "ハッピ Emacs"
