@@ -30,6 +30,19 @@
   (:require doom-themes)
   (load-theme 'doom-ayu-mirage t))
 
+(setup (:recipe 'popper)
+  (:require popper)
+  (:option popper-reference-buffers
+           '("\\*Messages\\*"
+             "Output\\*$"
+             "\\*Async Shell Command\\*"
+             help-mode
+             compilation-mode
+             "\\*vterm\\*"
+             "\\*Checkdoc Status\\*"))
+  (popper-mode)
+  (popper-echo-mode))
+
 (provide 'happy-ui)
 
 ;;; happy-ui.el ends here

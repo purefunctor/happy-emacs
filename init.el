@@ -48,6 +48,7 @@
 (require 'happy-lsp)
 (require 'happy-haskell)
 (require 'happy-rust)
+(require 'happy-term)
 (require 'happy-hydra)
 
 ;;; init.el ends here
