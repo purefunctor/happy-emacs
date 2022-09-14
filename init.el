@@ -46,6 +46,7 @@
 (require 'happy-magit)
 (require 'happy-org)
 (require 'happy-lsp)
+(require 'happy-haskell)
 (require 'happy-rust)
 (require 'happy-hydra)
 
