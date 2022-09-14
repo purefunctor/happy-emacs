@@ -31,7 +31,9 @@
   ;; lsp performance
   read-process-output-max (* 8 1024 1024)
   ;; standard, but opinionated
-  require-final-newline t)
+  require-final-newline t
+  ;; no ace
+  display-line-numbers-type 'relative)
 
 ;; load customizations only if they exist
 (setq custom-file happy-custom)
