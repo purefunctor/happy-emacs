@@ -32,7 +32,8 @@
 (setup (:recipe 'kind-icon)
   (:require kind-icon)
   (:option kind-icon-default-face 'corfu-default
-           kind-icon-blend-background nil)
+           kind-icon-blend-background nil
+           (append kind-icon-mapping) '(enum-member "em" :icon "format-list-checks" :face font-lock-builtin-face))
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (provide 'happy-minibuffer)
