@@ -37,6 +37,10 @@
            (append kind-icon-mapping) '(type-parameter "tp" :icon "format-list-bulleted-type" :face font-lock-type-face))
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
+(setup (:recipe 'vertico-posframe)
+  (:require vertico-posframe)
+  (vertico-posframe-mode))
+
 (provide 'happy-minibuffer)
 
 ;;; happy-minibuffer.el ends here
