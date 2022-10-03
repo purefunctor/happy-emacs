@@ -33,7 +33,8 @@
   (:require kind-icon)
   (:option kind-icon-default-face 'corfu-default
            kind-icon-blend-background nil
-           (append kind-icon-mapping) '(enum-member "em" :icon "format-list-checks" :face font-lock-builtin-face))
+           (append kind-icon-mapping) '(enum-member "em" :icon "format-list-checks" :face font-lock-builtin-face)
+           (append kind-icon-mapping) '(type-parameter "tp" :icon "format-list-bulleted-type" :face font-lock-type-face))
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (provide 'happy-minibuffer)
