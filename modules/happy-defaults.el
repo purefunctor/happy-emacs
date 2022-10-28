@@ -41,7 +41,7 @@
 
 ;; fonts
 (dolist (face '(default fixed-pitch variable-pitch))
-  (set-face-attribute face nil :family "FantasqueSansMono Nerd Font" :height 140))
+  (set-face-attribute face nil :family "PragmataPro Mono" :height 140))
 
 ;; modes
 (column-number-mode)
