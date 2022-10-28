@@ -36,10 +36,17 @@
   (:with-mode visual-fill-column-mode
     (:hook-into org-mode)))
 
+(defconst happy/org-roam-longest-title-length-default 20
+  "The default value yielded by `happy/org-roam-longest-title-length'.")
+
 (defun happy/org-roam-longest-title-length ()
   "Find the length of the node with the longest title."
-  (+ 1 (seq-max (seq-map (lambda (x) (string-width (car x)))
-                         (org-roam-db-query [:select title :from nodes])))))
+  (let ((title-lengths
+         (seq-map (lambda (x) (string-width (car x)))
+                  (org-roam-db-query [:select title :from nodes]))))
+    (+ 1 (if (seq-empty-p title-lengths)
+             happy/org-roam-longest-title-length-default
+           (seq-max title-lengths)))))
 
 (cl-defmethod org-roam-node-parent ((node org-roam-node))
   "Get the title of a NODE's parent NODE."
