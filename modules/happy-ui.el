@@ -30,6 +30,10 @@
   (:require doom-themes)
   (load-theme 'doom-ayu-mirage t))
 
+(defun happy/popper-fit-window-height (win)
+  "Make `popper' fill half of the window height at most."
+  (fit-window-to-buffer win (floor (frame-height) 2) (floor (frame-height) 2)))
+
 (setup (:recipe 'popper)
   (:require popper)
   (:option popper-reference-buffers
@@ -39,7 +43,8 @@
              help-mode
              compilation-mode
              "\\*vterm\\*"
-             "\\*Checkdoc Status\\*"))
+             "\\*Checkdoc Status\\*")
+           popper-window-height #'happy/popper-fit-window-height)
   (popper-mode)
   (popper-echo-mode))
 
