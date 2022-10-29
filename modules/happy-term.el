@@ -10,7 +10,7 @@
 (defun happy/project-vterm ()
   "Open a `vterm' terminal on the project root."
   (interactive)
-  (let ((default-directory (project-root (project-current))))
+  (let ((default-directory (project-root (project-current t))))
     (vterm-other-window)))
 
 (define-key project-prefix-map (kbd "t") #'happy/project-vterm)
