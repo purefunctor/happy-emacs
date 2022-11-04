@@ -14,6 +14,6 @@
     (horizontal-scroll-bars . nil)
     (left-fringe . 8)
     (right-fringe . 8)
-    (alpha . (85 . 85))))
+    (alpha . (90 . 90))))
 
 ;;; early-init.el ends here
